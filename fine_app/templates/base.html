@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% block header %}
+        <header>
+            <ul class="menu" id="menu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/fines">Штрафы</a></li>
+            <li><a href="/add">Добавить штраф</a></li>
+            <li><a href="/pay">Платить штраф</a></li>
+        </ul>
+        </header>
+
+    {% endblock %}
+
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>

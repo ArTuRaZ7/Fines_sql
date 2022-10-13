@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <input type="text" class="inpt" id="myInput" onkeyup="myFunction()" placeholder="Поиск штрафов по номеру машины..">
+<table class="table" id="myTable">
+    <tr>
+        <th>Имя</th>
+        <th>Номер машины</th>
+        <th>Причина</th>
+        <th>Сумма</th>
+        <th>Дата наложения штрафа</th>
+        <th>Дата оплаты</th>
+    </tr>
+    {% for fine in fines %}
+    <tr>
+        <td>{{ fine.name }}</td>
+        <td>{{ fine.number_plate }}</td>
+        <td>{{ fine.violation }}</td>
+        <td>{{ fine.sum_fine }}</td>
+        <td>{{ fine.date_violation }}</td>
+        <td>{{ fine.date_payment }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+{% endblock %}
